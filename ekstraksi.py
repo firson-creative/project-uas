@@ -39,8 +39,9 @@ def chunk_teks(teks, chunk_size=1000, overlap=200):
     indeks_awal = 0
 
     while indeks_awal < panjang_teks:
+        
         indeks_akhir = indeks_awal + chunk_size
-        potongan = teks[indeks_awal + chunk_size]
+        potongan = teks[indeks_awal:chunk_size]
         chunks.append(potongan)
 
         indeks_awal += chunk_size - overlap
