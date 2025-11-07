@@ -1,0 +1,14 @@
+[
+  " \n \nCHAPTER 4 \nTEMPLATE BASIC  1 \n \n1. Students are able to analyze the purpose and use of templates in Flask by examining how they \nhelp separate applica\ufffdon logic from the user interface.  \n2. Students are able to interpret and modify basic Flask templates that display data passed from the \nbackend using variables.  \n3. Students are able to implement basic HTML templates in Flask by crea\ufffdng a simple web page that \ndynamically displays content using template variables.  \n \na) Template Basic  \nA s  a  w e b  f r a m e w o r k ,  F l a s k  u s e s  t e m p l a t e s  i n  t h e  f o r m  o f  H T M L  \ufb01 l e s  t o  d i s p l a y  w e b  p a g e s  \ndynamically. This is possible because Flask u\ufffdlises Jinja2 as its template engine. Jinja2 is a built -in \ntempla\ufffdng system that allows you to insert variables, loops, a nd build simple logic and interfaces. \nThis separa\ufffdon makes the code structure cleaner, \ufffddier, and more manageable especially for \nmedium to large -scale web applica\ufffdons.  \n T",
+  "sert variables, loops, a nd build simple logic and interfaces. \nThis separa\ufffdon makes the code structure cleaner, \ufffddier, and more manageable especially for \nmedium to large -scale web applica\ufffdons.  \n T",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  ""
+]

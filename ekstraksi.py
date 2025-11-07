@@ -1,5 +1,8 @@
+import json
 import os
 from PyPDF2 import PdfReader
+from sentence_transformers import SentenceTransformer
+import numpy as np
 
 PDF_FOLDER_PATH = "data_pdf"
 
@@ -48,19 +51,41 @@ def chunk_teks(teks, chunk_size=1000, overlap=200):
 
     print(f"...Chunking selesai. Total potongan dibuat: {len(chunks)}")
     return chunks
+
+def db_vektor(chunks): #memebuat database vektor
+
+    print(f"\nMemulai Modelling Vektorisasi (Embedding)...")
+    print(" Memuat model 'all-MiniLM-L6-v2'...")
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+
+    print(f" Mengubah {len(chunks)} potongan teks menjadi vektor...")
+
+    embeddings= model.encode(chunks, show_progress_bar=True)
+    print("...VEktorisasi selesai.")
+    return embeddings
+
     
 if __name__ == "__main__":
     
     semua_teks = ekstrak_teks_df(PDF_FOLDER_PATH)
     potongan_teks = chunk_teks(semua_teks)
-    print("\n--- HASIL CHUNCKING ---")
+    database_vektor = db_vektor(potongan_teks)
 
-    if potongan_teks:
-        print(potongan_teks[0])
-        print("...")
-        print(f"\nTotal potongan (chunks) dibuat: {len(potongan_teks)}")
-    else:
-        print("Tidak ada teks yang berhasil di-chunk.")
+    print("\nMenyinmpan hasil ke file...")
+
+    try:
+        with open("chunks.json", "w", encoding="utf-8") as f:
+            json.dump(potongan_teks, f, indent=2)
+
+        np.save("vectors.npy", database_vektor)
+
+        print("...Hasil berhasil disimpan sebagai 'chunks.json' dan 'vectors.npy'")
+
+    except Exception as e:
+        print(f"Error saat menyimpan file: {e}")
 
     print("-----------------------------------------")
-    
+    print(f"Total potongan (chunks) dibuat: {len(potongan_teks)}")
+
+    if 'database_vektor' in locals():
+        print(f"Dimensi Database Vektor: {database_vektor.shape}")
